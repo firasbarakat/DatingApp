@@ -27,7 +27,6 @@ export class NavComponent implements OnInit {
         },
         error: (error) => {
           console.error(error.error);
-          this.toastr.error(error.error);
         }
       });
   }
