@@ -15,14 +15,14 @@ namespace API
                 var context = services.GetRequiredService<DataContext>();
                 await context.Database.MigrateAsync();
                 await Seed.SeedUsers(context);
+
+                await host.RunAsync();
             }
             catch (Exception ex)
             {
                 var logger = services.GetRequiredService<ILogger<Program>>();
                 logger.LogError(ex, "An error occurred during migration");
             }
-
-            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
